@@ -30,41 +30,4 @@ class Main {
         	System.out.printf("Case #%d: %d\n",i , ans);	
         }
     }
-
-    static int func() {
-        int price = r_price[0];
-        int sum;
-        int bit;
-        int inc;//option num : max=2
-        String bin;
-
-        for (int i = 0; i < rnum; i++) {     	
-        	sum = r_price[i];
-        	if (sum == money)
-        		return sum;
-        	bit = (int)Math.pow(2, opnum) - 1;
-   	        while (bit >= 0) {
-    	    	bin = Integer.toBinaryString(bit);
-    	    	inc = 0;
-        		for (int j = 0; j < bin.length(); j++) {
-        			if (bin.charAt(bin.length() - j - 1) == '1' && inc < 2) {
-        				try {
-        					sum += op_price[bin.length() - j - 1];
-        					inc++;
-        				} catch (ArrayIndexOutOfBoundsException e) {
-        					break;
-        				}
-        			}
-        		}
-        		if (Math.abs(money - sum) < Math.abs(money - price) || (Math.abs(money - sum) == Math.abs(money - price) && sum < price)) {
-        			price = sum;
-        		}
-        		if (price == money)
-        			 return price;
-        		bit--;
-        		sum = r_price[i];
-        	} 	
-        }
-        return price;
-    }
 }
